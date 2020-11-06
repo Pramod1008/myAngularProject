@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { Recipe } from '../recipes/recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 
-Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'root' })
 export class DataStorageService{
     constructor(private http: HttpClient,private service: RecipeService){}
 
