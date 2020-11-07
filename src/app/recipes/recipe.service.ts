@@ -9,20 +9,20 @@ import { Recipe } from './recipe.model';
 export class RecipeService{
   recipeChanged = new Subject<Recipe[]>();
     private recipes: Recipe[] = [
-        new Recipe('A Test Recipe',
-         'This is simply a test',
-          'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
-          [
-              new Ingredient("Salt",23),
-              new Ingredient("Sugar",34)
-          ]),
-        new Recipe('Another Test Recipe', 
-        'This is simply a test', 
-        'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
-        [
-            new Ingredient("Turminal",223),
-            new Ingredient("Sugarcane",334)
-        ])
+        // new Recipe('A Test Recipe',
+        //  'This is simply a test',
+        //   'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
+        //   [
+        //       new Ingredient("Salt",23),
+        //       new Ingredient("Sugar",34)
+        //   ]),
+        // new Recipe('Another Test Recipe', 
+        // 'This is simply a test', 
+        // 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
+        // [
+        //     new Ingredient("Turminal",223),
+        //     new Ingredient("Sugarcane",334)
+        // ])
       ];
 
       constructor(private slService: ShoppingListService){}
