@@ -1,44 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
 import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  templateUrl: './auth.component.html'
 })
-export class AuthComponent implements OnInit {
-
+export class AuthComponent {
   isLoginMode = true;
+  isLoading = false;
+  error: string = null;
 
-  constructor(private service: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-  }
-
-  onSwitchMode(){
+  onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit(authForm : NgForm){
-    if(!authForm.valid){
-      return
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
     }
-    const email = authForm.value.email;
-    const password = authForm.value.password;
-    if(this.isLoginMode){
-      //...
+    const email = form.value.email;
+    const password = form.value.password;
+
+    this.isLoading = true;
+    if (this.isLoginMode) {
+      // ...
+    } else {
+      this.authService.signup(email, password).subscribe(
+        resData => {
+          console.log(resData);
+          this.isLoading = false;
+        },
+        errorMessage => {
+          console.log(errorMessage);
+          this.error = errorMessage;
+          this.isLoading = false;
+        }
+      );
     }
-    else {
-    this.service.signUp(email,password).subscribe(resData =>
-      {
-        console.log(resData);
-      },
-      error =>
-      {
-        console.log(error);
-      });
-    }
-    authForm.reset();
+
+    form.reset();
   }
 }

@@ -9,9 +9,9 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes=[
-    { path:'',redirectTo:'/recipe',pathMatch:'full'},
+    { path:'',redirectTo:'/recipes',pathMatch:'full'},
     {
-        path:'recipe',component: RecipesComponent,children:[
+        path:'recipes',component: RecipesComponent,children:[
             {path:'',component: RecipeStartComponent},            
             {path:'new',component: RecipeEditComponent},
             {

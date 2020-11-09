@@ -1,22 +1,19 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
-  constructor(private datastorageservice: DataStorageService) { }
+export class HeaderComponent {
+  constructor(private dataStorageService: DataStorageService) {}
 
-  ngOnInit(): void {
+  onSaveData() {
+    this.dataStorageService.storeRecipes();
   }
 
-  onSaveData(){
-    this.datastorageservice.storeRecipe();
-  }
-
-  onFetchData()
-  {
-    this.datastorageservice.fetchData().subscribe();
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe();
   }
 }
