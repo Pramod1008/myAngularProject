@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError,tap } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   kind: string;
@@ -16,7 +17,7 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
   user = new BehaviorSubject<User>(null);
 
   signup(email: string, password: string) {
@@ -88,5 +89,10 @@ export class AuthService {
         errorMessage = 'Invalid Password'
     }
     return throwError(errorMessage);
+  }
+
+  logOut(){
+    this.user.next(null);
+    this.router.navigate(['auth']);
   }
 }
